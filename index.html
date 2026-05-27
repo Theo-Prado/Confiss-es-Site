@@ -1,1 +1,1023 @@
-print("Hello World")
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal informativo sobre a importância da confissão na Igreja Católica Apostólica Romana.">
+    <meta name="keywords" content="confissão, sacramento, Igreja Católica, evangelização">
+    <meta name="author" content="Theo Prado">
+    <title>O Sacramento da Confissão - Igreja Católica Apostólica Romana</title>
+
+    <!-- Fontes modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --glass-bg: rgba(255,255,255,0.30);
+            --glass-blur: 22px;
+            --glass-border: rgba(255,255,255,0.30);
+            --catolic-yellow: #ffd700;
+            --catolic-red: #ac162b;
+            --catolic-blue: #194788;
+            --cor-destaque-suave: #c41e3a;
+            --shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+            --icon-size: 3rem;
+            --gradient-vatican: linear-gradient(120deg, #fffbe0ee 30%, #ffd700cc 55%, #c41e3acc 100%);
+            --font-main: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        }
+
+        /* Fundo glassmorphism com gradiente animado */
+        body::before {
+            content: "";
+            position: fixed;
+            z-index: -2;
+            inset: 0;
+            background: linear-gradient(120deg, #fffbe0 5%, #fff6da 45%, #ffd700 85%, #c41e3a 120%);
+            opacity: 0.85;
+            animation: backgroundMove 18s ease-in-out infinite alternate;
+        }
+        @keyframes backgroundMove {
+            0% { filter: blur(0px) brightness(.99);}
+            80% { filter: blur(11px) brightness(1.08);}
+            100% { filter: blur(5px) brightness(1.06);}
+        }
+
+        /* Efeito "vidro fosco suave" em tudo */
+        header, 
+        .card, 
+        .terco-container, 
+        .informacoes-confissao, 
+        .videos-container .video-item, 
+        .paroquias-info, 
+        .mapa-container, 
+        footer, 
+        .carlo-card {
+            background: var(--glass-bg) !important;
+            border: 1.7px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            box-shadow: var(--shadow);
+            border-radius: 22px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: transparent !important;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6.7rem 2rem 4rem 2rem;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            position: fixed;
+            width: 85vw;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 2vw;
+            padding: 1rem 2.5vw;
+            background: var(--glass-bg) !important;
+            margin-bottom: 4rem;
+            z-index: 100;
+        }
+        .container-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.55rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--catolic-blue);
+            letter-spacing: 2px;
+            text-shadow:0 2px 8px #ffd70055;
+        }
+        .logo-icone {
+            font-size: 2.45rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.7rem;
+            flex-wrap: wrap;
+            backdrop-filter: blur(6px);
+            background: rgba(250,250,250,0.11);
+            border-radius: 18px;
+            padding: 0.7em 1.2em;
+            box-shadow: 0 2px 13px #fff2;
+        }
+        nav a {
+            color: var(--catolic-blue);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.26em 0.95em;
+            font-size: 1em;
+            border-radius: 11px;
+            transition: background 0.25s,color 0.22s;
+        }
+        nav a:hover {
+            background: var(--catolic-yellow);
+            color: var(--catolic-red);
+        }
+        .controles-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .btn-tema {
+            background: var(--catolic-yellow);
+            border-radius: 14px;
+            border: none;
+            color: var(--catolic-blue);
+            font-weight: bold;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            margin-top: 2px;
+            cursor:pointer;
+            transition: filter 0.22s, transform .22s;
+        }
+        .btn-tema:hover {
+            filter: brightness(.97) blur(.5px);
+            transform:scale(1.07);
+            background: var(--catolic-red);
+            color: #ffe;
+        }
+
+        /* ===== BANNER PRINCIPAL ===== */
+        .banner-principal {
+            margin-top: 7.5rem;
+            padding: 6.2rem 2rem 3.8rem 2rem;
+            background: var(--gradient-vatican) !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 32px;
+            margin-bottom: 3vw;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-principal::before {
+            /* Bandeira do Vaticano no banner, bem sutil */
+            content: '';
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            width: 78px;
+            height: 52px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Vatican_City_%282023–present%29.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        .banner-conteudo {
+            position:relative;
+            z-index:2;
+        }
+        .banner-conteudo h1 {
+            font-size: 2.9rem;
+            margin-bottom: 1.3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--catolic-red);
+            letter-spacing:1.5px;
+            text-shadow: 0 1.5px 9px #ffffff55;
+        }
+        .banner-conteudo p {
+            font-size: 1.28rem;
+            margin-bottom: 2rem;
+            color: var(--catolic-blue);
+            font-style: italic;
+            text-shadow: 0 2px 8px #ffd70044;
+        }
+        .btn-principal {
+            background: var(--catolic-yellow);
+            border-radius: 16px;
+            border: none;
+            color: var(--catolic-blue);
+            font-weight: bold;
+            padding: 0.97em 2.3em;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            margin-top: 9px;
+            cursor:pointer;
+            font-family: inherit;
+            transition: filter 0.22s, transform .22s, background .2s;
+        }
+        .btn-principal:hover {
+            filter: brightness(.97) blur(0.5px);
+            transform: scale(1.04);
+            background: var(--catolic-red);
+            color: #fffbe0;
+        }
+        /* ===== CARDS ===== */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.1rem;
+            margin-bottom: 3.2rem;
+        }
+        .card {
+            text-align: center;
+            padding: 2.2rem 1.4rem 2.2rem 1.4rem;
+            transition: all 0.3s ease;
+            position:relative;
+            min-height:270px;
+        }
+        .card:hover {
+            box-shadow: 0 16px 32px rgba(139, 0, 0, 0.22), 0 6px 21px #ffd70044;
+            border-color: var(--catolic-yellow);
+            transform: translateY(-6px) scale(1.025);
+        }
+        .card-icone {
+            font-size: var(--icon-size);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 8px 18px #ffd70088);
+        }
+        /* Medalha de São Bento em card 3 */
+        .grid-cards .card:nth-child(3) .card-icone {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/9/9e/CSPB.png') center/cover no-repeat;
+            display: inline-block; width:54px; height:54px;
+            border-radius: 50%; background-size:contain; margin-bottom:1.2rem;
+            border:1px solid var(--glass-border);
+            box-shadow:0 6px 24px #ffd70033;
+            image-rendering: -webkit-optimize-contrast;
+            font-size:0; /* esconde emoji */
+        }
+
+        .card h3 {
+            font-size: 1.37rem;
+            margin-bottom: 1.1rem;
+            color: var(--catolic-red);
+        }
+        .card p {
+            font-size: 0.99rem;
+            line-height: 1.7;
+            color: var(--catolic-blue);
+        }
+
+        /* INFORMAÇÕES DE CONFISSÃO */
+        .informacoes-confissao {
+            margin-bottom: 1.95rem;
+            padding: 1.7rem 2rem;
+            border-left: 6px solid var(--catolic-yellow);
+        }
+        .informacoes-confissao h3, .informacoes-confissao h4 {
+            color: var(--catolic-red);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat',sans-serif;
+        }
+        .informacoes-confissao p {
+            margin-bottom: 0.7rem;
+            text-align: justify;
+            color: var(--catolic-blue);
+            font-size:1.03em;
+        }
+
+        /* CARLO ACUTIS CARD */
+        .carlo-card {
+            display: flex;
+            align-items: center;
+            gap: 2vw;
+            padding: 2vw;
+            justify-content: center;
+            background: var(--glass-bg);
+            border-radius: 28px;
+            backdrop-filter: blur(14px);
+            margin: 2vw 0 3.5vw 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+        .carlo-card img {
+            width: 94px; height: auto;
+            border-radius: 17px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px #ffd70033;
+        }
+        .carlo-card span {
+            font-size: 1.22em; color: var(--catolic-blue);
+            font-weight: 700; font-family: 'Montserrat',sans-serif;
+            margin-bottom: 4px; display:block;
+        }
+        .carlo-card small {
+            color: var(--catolic-red);
+            font-size: 1.08em;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            display:block;
+            margin-top:4px;
+        }
+
+        /* ===== VÍDEOS ===== */
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2.1rem;
+        }
+        .video-item {
+            border-radius: 21px;
+            overflow: hidden;
+            transition: all 0.28s cubic-bezier(.77,.22,.12,.95);
+            position:relative;
+        }
+        .video-item:hover {
+            box-shadow: 0 8px 32px #ffd70044, 0 2px 12px #c41e3a22;
+            border-color: var(--catolic-yellow);
+            transform: scale(1.018);
+        }
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background-color: #ffd70022;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .video-item:hover .video-thumbnail {
+            background-color: var(--catolic-yellow);
+            color: white;
+        }
+        .video-info {
+            padding: 1.5rem;
+        }
+        .video-info h4 {
+            margin-bottom: 0.5rem;
+            color: var(--catolic-red);
+            font-size: 1rem;
+        }
+        .video-info p {
+            font-size: 0.94rem;
+            color: var(--catolic-blue);
+            margin-bottom: 1rem;
+        }
+        .btn-video {
+            background: var(--catolic-yellow);
+            color: var(--catolic-blue);
+            font-weight: bold;
+            border-radius: 11px;
+            padding: 0.55rem 1.18rem;
+            font-size: 0.92rem;
+            border: none;
+            box-shadow: var(--shadow);
+            font-family: inherit;
+            transition: background 0.17s, color 0.18s, transform .18s;
+            cursor:pointer;
+        }
+        .btn-video:hover {
+            background: var(--catolic-red);
+            color: #ffe;
+            transform: scale(1.055);
+        }
+
+        /* ===== TERÇO DIGITAL ===== */
+        .terco-container {
+            border-radius: 33px;
+            padding: 2.7vw 1.5vw;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+        .rosario-beads {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .bead {
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+            background: var(--catolic-red);
+            box-shadow: 0 2px 10px #ffd70029;
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.87rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .bead:hover, .bead.active {
+            background: var(--catolic-yellow);
+            color: var(--catolic-red);
+        }
+        .oracao-display {
+            background-color: var(--glass-bg);
+            color: var(--catolic-blue);
+            padding: 2rem;
+            border-radius: 14px;
+            margin: 2rem 0;
+            font-style: italic;
+            line-height: 1.7;
+            min-height: 100px;
+            border:1.2px solid var(--catolic-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(7px);
+        }
+
+        /* ===== LOCALIZAÇÃO DE PARÓQUIAS ===== */
+        .paroquias-section {
+            margin-top: 3rem;
+        }
+        .localizacao-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .mapa-container {
+            min-height: 400px;
+        }
+        #mapa-locais {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+        .paroquias-info input,
+        .paroquias-info button {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1.7px solid var(--glass-border);
+            border-radius: 9px;
+            font-family: inherit;
+            font-size: 0.98rem;
+            background: rgba(255,255,255,0.37);
+        }
+        .paroquias-info input {
+            color: var(--catolic-blue);
+        }
+        .paroquias-info button {
+            background: var(--catolic-yellow);
+            color: var(--catolic-blue);
+            cursor: pointer;
+            font-weight: bold;
+            border: 1.7px solid var(--catolic-yellow);
+            transition: all 0.2s;
+        }
+        .paroquias-info button:hover {
+            background-color: var(--catolic-red);
+            color: white;
+            transform: scale(1.032);
+        }
+        .paroquias-lista {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .paroquia-item {
+            background-color: var(--glass-bg);
+            color: var(--catolic-blue);
+            padding: 1.6rem;
+            margin-bottom: 1.2rem;
+            border-radius: 13px;
+            border-left: 5px solid var(--catolic-yellow);
+            box-shadow:0 2px 7px #ffd70022;
+        }
+        .paroquia-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .paroquia-item p {
+            font-size: 0.93rem;
+            opacity: 0.96;
+        }
+        .paroquia-item .btn-direcoes {
+            background: var(--catolic-yellow);
+            color: var(--catolic-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 11px;
+            font-size: 0.81rem;
+            margin-top: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.18s;
+            font-weight: bold;
+            box-shadow: 0 2px 10px #ffd70015;
+        }
+        .paroquia-item .btn-direcoes:hover {
+            background-color: var(--catolic-red);
+            color: white;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background-color: var(--glass-bg);
+            color: var(--catolic-blue);
+            padding: 3.1rem 2rem;
+            border-top: 1.9px solid var(--glass-border);
+            margin-top: 6vw;
+            border-radius: 25px 25px 0 0;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.8rem;
+        }
+        .footer-secao h4 {
+            margin-bottom: 1rem;
+            color: var(--catolic-red);
+            font-weight:700;
+        }
+        .footer-secao p,
+        .footer-secao a {
+            font-size: 0.96rem;
+            line-height: 1.8;
+        }
+        .footer-secao a {
+            color: var(--catolic-yellow);
+            text-decoration: none;
+            transition: color 0.18s;
+        }
+        .footer-secao a:hover {
+            color: var(--catolic-red);
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1.1px solid var(--catolic-yellow);
+            padding-top: 2rem;
+            font-size: 0.96rem;
+            color: var(--catolic-red);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 990px) {
+            .banner-principal {
+                margin-top: 6.5rem;
+                padding:4rem 2vw 3rem 2vw;
+            }
+            main {
+                padding-top: 4rem;
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                padding:0.7rem 0.8rem;
+                min-width: 100vw;
+                left: 0;
+                transform:none;
+            }
+            .container-header {
+                flex-direction: column;
+                gap: 0.7rem;
+                padding:0;
+            }
+            nav ul {
+                gap: 0.5rem;
+                padding: 0.5em 0.2em;
+            }
+            main {
+                padding: 1.5rem 1vw;
+            }
+            .banner-principal {
+                padding: 2.6rem 1vw 2rem 1vw;
+                margin-top: 5.2rem;
+            }
+            .secao h2 {
+                font-size: 2rem;
+            }
+            .localizacao-container {
+                grid-template-columns: 1fr;
+            }
+            .carlo-card {
+                flex-direction:column;
+                text-align:center;
+            }
+        }
+        @media (max-width: 600px) {
+            .banner-principal {
+                padding: 2rem 0.2vw 1.5rem 0.2vw;
+            }
+            .carlo-card img { width:64px; }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        .card, .video-item, .informacoes-confissao, .carlo-card {
+            animation: fadeIn 0.7s cubic-bezier(.77,.22,.12,.95) both;
+        }
+
+        /* ===== SCROLL ===== */
+        ::-webkit-scrollbar {
+            width: 11px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--catolic-yellow);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--catolic-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== CABEÇALHO ===== -->
+    <header>
+        <div class="container-header">
+            <a href="#inicio" class="logo">
+                <span class="logo-icone">✝️</span>
+                <span>Sacramento da Confissão</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#videos">Vídeos</a></li>
+                    <li><a href="#terco">Terço Digital</a></li>
+                    <li><a href="#paroquias">Paróquias</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="controles-header">
+                <button class="btn-tema" id="btn-tema" aria-label="Alternar tema claro/escuro">🌙 Escuro</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== BANNER PRINCIPAL ===== -->
+    <section class="banner-principal" id="inicio">
+        <div class="banner-conteudo">
+            <h1>O Sacramento da Confissão</h1>
+            <p>Caminho de paz, perdão e reconciliação com Deus</p>
+            <button class="btn-principal" onclick="document.getElementById('sobre').scrollIntoView()">Saiba Mais</button>
+        </div>
+    </section>
+
+    <main>
+    <!-- ===== SEÇÃO SOBRE ===== -->
+    <section class="secao" id="sobre">
+        <h2>Sobre o Sacramento da Confissão</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icone">✨</div>
+                <h3>O que é?</h3>
+                <p>A Confissão, também chamada Sacramento da Penitência ou Reconciliação, é o sacramento da Igreja através do qual o cristão recebe o perdão de seus pecados.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone"></div>
+                <h3>Importância</h3>
+                <p>É fundamental para a vida espiritual do católico, permitindo a reconciliação com Deus e a comunidade eclesial, trazendo paz e graça divina.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone"></div>
+                <h3>Tradição Apostólica</h3>
+                <p>A prática da confissão encontra suas raízes no Evangelho e foi transmitida pela tradição apostólica através de séculos de história da Igreja.</p>
+            </div>
+        </div>
+
+        <!-- Informações Complementares -->
+        <div class="informacoes-confissao">
+            <h3>Fundamento Bíblico</h3>
+            <p>
+                O nosso Senhor Jesus Cristo deu ao sacramento seu sentido profundo quando disse a seus apóstolos: "Recebei o Espírito Santo. 
+                Aos que perdoardes os pecados, ser-lhes-ão perdoados; aos que os não perdoardes, não lhes serão perdoados" (João 20, 22-23).
+            </p>
+        </div>
+        <div class="informacoes-confissao">
+            <h3>Graças do Sacramento</h3>
+            <p>
+                Através da confissão sincera, o fiel recebe a remissão dos pecados, a paz de consciência, a serenidade espiritual e a graça 
+                necessária para crescimento na vida cristã. O Sacramento restaura ou favorece a amizade com Deus.
+            </p>
+        </div>
+        <div class="informacoes-confissao">
+            <h3>Para Todos</h3>
+            <p>
+                Todo cristão batizado, que tenha alcançado o uso da razão e tenha cometido pecado mortal após o batismo, está obrigado a confessar-se 
+                ao menos uma vez por ano. Recomenda-se, porém, a confissão frequente como prática de vida cristã fervorosa e para progressão espiritual.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== DESTAQUE CARLO ACUTIS ===== -->
+    <section class="carlo-card" aria-label="Mensagem Inspiracional Carlo Acutis">
+        <img src="https://i.pinimg.com/originals/fb/11/f7/fb11f775e44ec6b0c54c6523ef6ccaa1.jpg" alt="Imagem de Carlo Acutis">
+        <div>
+            <span>“O Rosário é a escada mais curta para subir ao Céu”</span>
+            <small>— Carlo Acutis</small>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE VÍDEOS ===== -->
+    <section class="secao" id="videos">
+        <h2>Vídeos Recomendados</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">
+            Conheça ensinamentos de fontes confiáveis sobre o Sacramento da Confissão
+        </p>
+
+        <div class="videos-container">
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=vatican+news+confissao')">
+                    🎬
+                </div>
+                <div class="video-info">
+                    <h4>Vatican News</h4>
+                    <p>Ensinamentos da Igreja sobre o Sacramento da Confissão</p>
+                    <a href="https://www.vaticannews.va/" target="_blank" class="btn-video">Acessar</a>
+                </div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=cnbb+confissao')">
+                    🎥
+                </div>
+                <div class="video-info">
+                    <h4>CNBB (Conferência Nacional dos Bispos do Brasil)</h4>
+                    <p>Orientações da Igreja Católica Brasileira sobre Sacramento</p>
+                    <a href="https://www.cnbb.org.br/" target="_blank" class="btn-video">Acessar</a>
+                </div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=Padre+Josileudo+Queiroz+confissao')">
+                    👨‍🎓
+                </div>
+                <div class="video-info">
+                    <h4>Padre Josileudo Queiroz</h4>
+                    <p>Homilias e ensinamentos sobre o Sacramento da Confissão</p>
+                    <a href="https://www.youtube.com/results?search_query=Padre+Josileudo+Queiroz" target="_blank" class="btn-video">Acessar</a>
+                </div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=the+holy+see+confissao')">
+                    🎬
+                </div>
+                <div class="video-info">
+                    <h4>The Holy See</h4>
+                    <p>Documentos e ensinamentos da Santa Sé sobre o Sacramento</p>
+                    <a href="https://www.holyseeassets.va/" target="_blank" class="btn-video">Acessar</a>
+                </div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=catecismo+da+Igreja+Catolica+confissao')">
+                    📖
+                </div>
+                <div class="video-info">
+                    <h4>Catecismo da Igreja Católica</h4>
+                    <p>Ensinamentos completos sobre a Confissão e Penitência</p>
+                    <a href="https://www.vatican.va/" target="_blank" class="btn-video">Acessar</a>
+                </div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumbnail" onclick="abrirVideo('https://www.youtube.com/results?search_query=confissao+sacramentos+Igreja+Catolica')">
+                    ✨
+                </div>
+                <div class="video-info">
+                    <h4>Mais Conteúdos</h4>
+                    <p>Explorar mais ensinamentos e recursos sobre os sacramentos</p>
+                    <a href="https://www.catholicnews.com/" target="_blank" class="btn-video">Explorar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO TERÇO DIGITAL ===== -->
+    <section class="secao" id="terco">
+        <h2>Terço Digital</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">
+            Reze o Terço Sagrado em comunhão com os fiéis de todo o mundo
+        </p>
+
+        <div class="terco-container">
+            <h3 style="color: var(--catolic-red); margin-bottom: 1rem;">🙏 Reze Conosco</h3>
+            <div class="oracao-display" id="oracao-display">
+                <span>Clique em um terço para começar</span>
+            </div>
+            <div class="rosario-beads" id="rosario-beads">
+                <!-- Os terços serão gerados via JavaScript -->
+            </div>
+            <div style="margin-top: 2rem; padding: 1rem; background-color: var(--glass-bg); color: var(--catolic-blue); border-radius: 6px;">
+                <p style="font-size: 0.9rem;">
+                    O Terço é uma oração mariana tradicional da Igreja Católica composta de 150 Ave-Marias, 
+                    divididas em grupos de dez (décadas), cada uma precedida de um Pai-Nosso.
+                </p>
+            </div>
+            <a href="https://www.a12.com/reze-no-santuario/terco-virtual" target="_blank" class="btn-principal" style="display: inline-block; margin-top: 2rem;">
+                Reze no Santuário Virtual (A12)
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE PARÓQUIAS ===== -->
+    <section class="secao paroquias-section" id="paroquias">
+        <h2>Localize uma Paróquia</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">
+            Encontre igrejas e paróquias próximas de você para confessar e participar da missa
+        </p>
+        <div class="localizacao-container">
+            <div class="mapa-container">
+                <div id="mapa-locais" style="width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; color: var(--catolic-blue);">
+                    <p>Mapa interativo (Google Maps será carregado com sua localização)</p>
+                </div>
+            </div>
+            <div class="paroquias-info">
+                <h3 style="color: var(--catolic-red); margin-bottom: 1rem;">Buscar Paróquia</h3>  
+                <input 
+                    type="text" 
+                    id="endereco-input" 
+                    placeholder="Digite seu endereço ou localidade..."
+                    aria-label="Campo para inserir endereço"
+                >
+                <button 
+                    id="btn-localizar" 
+                    onclick="localizarParoquias()"
+                    aria-label="Botão para localizar paróquias"
+                >
+                    Localizar Paróquias
+                </button>
+                <button 
+                    id="btn-localizacao" 
+                    onclick="usarLocalizacaoAtual()"
+                    aria-label="Usar minha localização atual"
+                    style="background-color: var(--catolic-yellow);"
+                >
+                    📍 Usar Minha Localização
+                </button>
+                <div class="paroquias-lista" id="paroquias-lista">
+                    <p style="text-align: center; color: var(--catolic-blue); padding: 2rem;">
+                        Paróquias próximas aparecerão aqui
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 3rem;">
+            <h3 style="color: var(--catolic-red); margin-bottom: 1rem;">Informações sobre Confissões</h3>
+            <div id="info-confissoes" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div class="informacoes-confissao">
+                    <h4>Horários Típicos</h4>
+                    <p>
+                        Na maioria das paróquias, as confissões ocorrem antes das missas dominicais 
+                        e em horários específicos durante a semana. Consulte a paróquia para horários exatos.
+                    </p>
+                </div>
+                <div class="informacoes-confissao">
+                    <h4>Preparação</h4>
+                    <p>
+                        Antes de confessar, faça um exame de consciência sincero, recordando seus pecados 
+                        e manifestando contrição genuína e propósito de emenda.
+                    </p>
+                </div>
+                <div class="informacoes-confissao">
+                    <h4>Sigilo Confessional</h4>
+                    <p>
+                        O confessor está eternamente vinculado ao sigilo confessional. Nada do que é dito 
+                        na confissão será revelado a qualquer pessoa, em circunstância alguma.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO DE INFORMAÇÕES FINAIS ===== -->
+    <section class="secao">
+        <h2>Caminhar com a Igreja</h2>
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icone">📚</div>
+                <h3>Conhecer Melhor</h3>
+                <p>Explore o Catecismo da Igreja Católica para aprofundar seu conhecimento sobre os sacramentos e a fé católica.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone">🕯️</div>
+                <h3>Participar</h3>
+                <p>Participe regularmente das missas, sacramentos e atividades comunitárias de sua paróquia local.</p>
+            </div>
+            <div class="card">
+                <div class="card-icone">❤️</div>
+                <h3>Evangelizar</h3>
+                <p>Compartilhe sua fé com familiares e amigos, testemunhando a graça e paz que Deus oferece através da Igreja.</p>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer id="contato">
+        <div class="footer-container">
+            <div class="footer-secao">
+                <h4>✝️ Sobre Este Site</h4>
+                <p>
+                    Este portal foi criado com o objetivo de evangelizar através da internet, 
+                    promovendo o conhecimento sobre o Sacramento da Confissão na Igreja Católica Apostólica Romana.
+                </p>
+            </div>
+            <div class="footer-secao">
+                <h4>📖 Recursos Oficiais</h4>
+                <p>
+                    <a href="https://www.vatican.va/" target="_blank">Santa Sé</a><br>
+                    <a href="https://www.vaticannews.va/" target="_blank">Vatican News</a><br>
+                    <a href="https://www.cnbb.org.br/" target="_blank">CNBB</a><br>
+                    <a href="https://www.a12.com/" target="_blank">A12 Santuários</a>
+                </p>
+            </div>
+            <div class="footer-secao">
+                <h4>🙏 Devoção</h4>
+                <p>
+                    "Venha a mim, todos vós que estais fatigados e oprimidos, e eu vos aliviarei." 
+                    <br><br>
+                    — Mateus 11, 28
+                </p>
+            </div>
+            <div class="footer-secao">
+                <h4>⛪ Comunidade</h4>
+                <p>
+                    Se você deseja contribuir com este projeto ou sugerir melhorias, 
+                    entre em contato através de:
+                    <br><br>
+                    <strong>GitHub:</strong> <a href="https://github.com/Theo-Prado" target="_blank">Theo-Prado</a>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                © 2026 Sacramento da Confissão. Desenvolvido com humildade e fé na Igreja Católica Apostólica Romana.
+                <br>
+                <small>
+                    Última atualização: 27 de maio de 2026 | 
+                    <a href="#" onclick="alternarTema(); return false;" style="color: var(--catolic-red); text-decoration:underline;">Alternar Tema</a>
+                </small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT (como no original, manter se houver funcionalidades) ===== -->
+    <script>
+    // Funções de tema (dark/light) e interativo do terço, etc.
+    function inicializarTema() {
+        const temaSalvo = localStorage.getItem('tema');
+        const preferenciaSistema = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const temaInicial = temaSalvo || (preferenciaSistema ? 'escuro' : 'claro');
+        document.body.setAttribute('data-tema', temaInicial);
+        document.getElementById('btn-tema').textContent = temaInicial === 'escuro' ? '☀️ Claro' : '🌙 Escuro';
+    }
+    function alternarTema() {
+        const temaAtual = document.body.getAttribute('data-tema');
+        const novoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+        document.body.setAttribute('data-tema', novoTema);
+        localStorage.setItem('tema', novoTema);
+        document.getElementById('btn-tema').textContent = novoTema === 'escuro' ? '☀️ Claro' : '🌙 Escuro';
+    }
+    document.getElementById('btn-tema').addEventListener('click', alternarTema);
+    inicializarTema();
+    // Vídeo pop
+    function abrirVideo(url) { window.open(url, '_blank'); }
+    // Geração simples do terço digital
+    const beads = [
+        'Pai-Nosso', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria', 'Ave-Maria'
+    ];
+    const oracoes = {
+        0: 'Pai-Nosso: Pai nosso que estais no céu, santificado seja o Vosso nome...',
+        default: 'Ave-Maria: Ave Maria, cheia de graça, o Senhor é convosco...'
+    };
+    window.onload = () => {
+        // Gerar os beads do rosário/década
+        const beadsDiv = document.getElementById('rosario-beads');
+        if (beadsDiv) {
+            for (let i=0;i<beads.length;i++) {
+                const bead = document.createElement('button');
+                bead.className = 'bead';
+                bead.innerText = i === 0 ? '✝️' : (i<10?'🔴':'⚪');
+                bead.title = beads[i];
+                bead.onclick = () => {
+                    document.querySelectorAll('.bead').forEach(b => b.classList.remove('active'));
+                    bead.classList.add('active');
+                    document.getElementById('oracao-display').innerHTML = 
+                        `<span>${oracoes[i] || oracoes.default}</span>`;
+                }
+                beadsDiv.appendChild(bead);
+            }
+        }
+    }
+    </script>
+</body>
+</html>
